@@ -1,0 +1,5 @@
+Abebe,150.50
+Aster,430.00
+Chala,120.00
+Nardos,320.00
+Abel,50

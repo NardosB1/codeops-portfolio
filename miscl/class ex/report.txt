@@ -1,0 +1,6 @@
+=== Customer Transaction Summary (Highest First) ===
+Aster: 430.0 ETB
+Nardos: 320.0 ETB
+Abebe: 150.5 ETB
+Chala: 120.0 ETB
+Abel: 50.0 ETB
