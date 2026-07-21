@@ -6,62 +6,80 @@ class Book:
         self.pages = pages
 
     def describe(self):
-        print(f"'{self.title}' by {self.author}, {self.pages} pages.")
+        return f"The book '{self.title}' is written by {self.author}, having {self.pages} pages."
 
-# Create two books
+
 book1 = Book("Python Crash Course", "Eric Matthes", 544)
 book2 = Book("Automate the Boring Stuff", "Al Sweigart", 504)
 
-print("--- Exercise 1 Output ---")
-book1.describe()
-book2.describe()
+print(book1.describe())
+print(book2.describe())
 
 
-#Product Class & 3, 4, 5. Encapsulation & Independence
-class Product:
+#Product class
+class product:
     def __init__(self, name, price, quantity):
         self.name = name
         self.price = price
-        self.__quantity = quantity  # Private attribute (Name Mangling)
+        self.quantity = quantity
+    def restock(self, amount):
+        if amount <=0 :
+           return ValueError ("amount must be greater than zero")
+        self.quantity += amount
+        return self.quantity
+    def sell(self, amount):
+        if amount <= 0 :
+            return ValueError ("amount must be greater than zero")
+        elif amount > self.quantity :
+            return ValueError ("insufficient amount")
+        self.quantity -= amount
+        return self.quantity
 
-    # @property getter to safely expose private quantity
-    @property
-    def quantity(self):
+product1 = product("milk", 50, 10)
+print(product1.sell(11))
+
+
+#Make it private and #Validate
+class product:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.__quantity = quantity
+    @property 
+    def quantity (self):
+        return self.__quantity
+    @quantity.setter
+    def quantity (self, value):
+        if value < 0 :
+            return ValueError ("quantity can't be negative")
+        else :
+            self.__quantity = value
+    def restock(self, amount):
+        if amount <=0 :
+           return ValueError ("amount must be greater than zero")
+        self.__quantity += amount
+        return self.__quantity
+    def sell(self, amount):
+        if amount <= 0 :
+            return ValueError ("amount must be greater than zero")
+        elif amount > self.__quantity :
+            return ValueError ("insufficient amount")
+        self.__quantity -= amount
         return self.__quantity
 
-    # Setter with validation to prevent negative stock
-    @quantity.setter
-    def quantity(self, value):
-        if value < 0:
-            print(f"Error: Stock for {self.name} cannot go below zero!")
-        else:
-            self.__quantity = value
+product1 = product("milk", 50, 10)
+product2 = product("water", 40, 30)
+product3 = product("pen", 25, 15)
 
-    def restock(self, n):
-        # Uses the property setter to apply validation safely
-        self.quantity = self.__quantity + n
 
-    def sell(self, n):
-        # Checks if we have enough stock before subtracting
-        if self.__quantity - n < 0:
-            print(f"❌ Error: Cannot sell {n} units of {self.name}. Only {self.__quantity} left!")
-        else:
-            self.quantity = self.__quantity - n
+print(product1.quantity)
+product1.quantity = 15
+print(product1.quantity)
+print(product2.quantity )
+print(product3.quantity )
 
-# Test the Product class, methods, encapsulation, and independence
-print("\n--- Exercises 2 to 5 Output ---")
-prod1 = Product("Laptop", 45000, 10)
-prod2 = Product("Mouse", 1200, 50)
-prod3 = Product("Keyboard", 2500, 25)
 
-# Restock and sell operations
-prod1.restock(5)
-prod1.sell(3)
-print(f"{prod1.name} final quantity: {prod1.quantity}")
 
-# Testing validation (trying to drop below zero)
-prod2.sell(100) # Should trigger validation error
+#Prove independence
 
-# Proving object independence
-print(f"Prod2 ({prod2.name}) quantity: {prod2.quantity} (Unaffected)")
-print(f"Prod3 ({prod3.name}) quantity: {prod3.quantity} (Unaffected)")
+
