@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 5.Complete <head> & Validator Workflow -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover authentic Ethiopian products, spices, and coffee at Habesha Market in Addis Ababa.">
+    <title>Habesha Market | Authentic Ethiopian Goods & Coffee</title>
+</head>
+<body>
+    
+<!-- 1.Ethio Telecom Registration Form -->
+<form action="/register" method="POST">
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" required> <br>
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required> <br>
+    <label for="phone">Phone Number (+251 format):</label>
+    <input type="tel" id="phone" name="phone" pattern="^\+251[0-9]{9}$" placeholder="+251911223344" required> <br>
+    <label for="branch">Select Branch:</label>
+    <select id="branch" name="branch" required>
+        <option value="">--Choose a Branch--</option>
+        <option value="bole">Bole</option>
+        <option value="kazanchis">Kazanchis</option>
+        <option value="piassa">Piassa</option>
+    </select> <br>
+<button type="submit">Register</button>
+</form> <br>
+
+<!--2.Ethiopian Airlines Flight Table -->
+<table>
+    <caption>Ethiopian Airlines Daily Schedule</caption>
+    <thead>
+        <tr>
+            <th scope="col">Flight</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Departs</th>
+            <th scope="col">Price ETB</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ET 702</td>
+            <td>Addis Ababa </td>
+            <td>London </td>
+            <td>01:20 AM</td>
+            <td> 45,000</td>
+        </tr>
+        <tr>
+            <td>ET 500</td>
+            <td>Addis Ababa </td>
+            <td>Washington </td>
+            <td>10:15 PM</td>
+            <td> 68,000</td>
+        </tr>
+        <tr>
+            <td>ET 302</td>
+            <td>Addis Ababa </td>
+            <td>Nairobi </td>
+            <td>08:00 AM</td>
+            <td> 18,500</td>
+        </tr>
+        <tr>
+            <td>ET 608</td>
+            <td>Addis Ababa </td>
+            <td>Dubai </td>
+            <td>11:45 PM</td>
+            <td> 22,000</td>
+        </tr>
+        <tr>
+            <td>ET 211</td>
+            <td>Addis Ababa </td>
+            <td>Lagos </td>
+            <td>09:30 AM</td>
+            <td> 31,000</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 3.Media Block-->
+<figure>
+    <img src="C:\Users\aenda\OneDrive\Desktop\IBT\Module-02\day-12\assets\habesha market.jpg" alt="Authentic Packed Ethiopian Goods & Coffee Products displayed on a shelf">
+    <figcaption>Authentic Ethiopian Goods & Coffee</figcaption>
+</figure>
+
+<iframe src="https://www.google.com/maps/embed?pb=..." width="600" height="450" style="border:0;" loading="lazy" title="Map showing the location of Bole, Addis Ababa">
+</iframe>
+
+<!-- 4.Accessibility Rewrites -->
+<!-- Div-as-button rewritten properly -->
+<button type="button">Submit Order</button>
+
+<!-- Unlabelled input rewritten properly -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+
+<!-- Image with no alt rewritten properly -->
+<img src="coffee-ceremony.jpg" alt="Traditional Ethiopian coffee ceremony set with clay jebena and cups">
+
+</body>
+</html>
