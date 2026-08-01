@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservations — Habesha Eatery, Bole</title>
+    <meta name="description" content="Book a table at Habesha Eatery in Bole, Addis Ababa, and explore our authentic menu.">
+</head>
+<body>
+    <header>
+        <h1>Habesha Eatery</h1>
+        <nav>
+            <a href="index.html">Reservations</a> | 
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Make a Reservation</h2>
+            <form action="/reserve" method="POST">
+                <label for="res-name">Full Name:</label>
+                <input type="text" id="res-name" name="name" required> <br>
+                <label for="res-phone">Phone Number (+251):</label>
+                <input type="tel" id="res-phone" name="phone" pattern="^\+251[0-9]{9}$" placeholder="+251911223344" required> <br>
+                <label for="psize">Party Size:</label>
+                <input type="number" id="psize" name="psize" min="1" max="20" required> <br>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required> <br>
+                <label for="res-name">Full Name:</label>
+                <input type="text" id="res-name" name="name" required> <br>
+                <label for="request">Special Request:</label>
+                <textarea id="request" name="request"></textarea> <br>
+                <button type="submit"><em>Submit Reservation</em></button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Our Menu</h2>
+            <table>
+                <caption>Habesha Eatery Special Dishes</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Dish</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Price ETB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Doro Wat</td>
+                        <td>Traditional spicy chicken stew with hard-boiled egg</td>
+                        <td>450</td>
+                    </tr>
+                    <tr>
+                        <td>Kitfo</td>
+                        <td>Mince beef seasoned with mitmita and niter kibe</td>
+                        <td>500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Experience the Ambience</h2>
+            <figure>
+                <img src="C:\Users\aenda\OneDrive\Desktop\IBT\Module-02\day-12\assets\habesha eatry.jpg" alt="Traditional Mesob tables surrounded by comfortable seating inside Habesha Eatery">
+                <figcaption>Traditional dining setup at our Bole branch</figcaption>
+            </figure>
+        </section>
+    </main>
+
+    <footer>
+        <p>Bole, Addis Ababa | <a href="contact.html">Contact Us</a></p>
+    </footer>
+</body>
+</html>
