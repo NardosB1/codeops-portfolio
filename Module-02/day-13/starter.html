@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>Menu Card Component</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .menu-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 24px;
+            max-width: 320px;
+            width: 100%;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .menu-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .menu-card-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 0;
+        }
+
+        .menu-card-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #e53e3e;
+            margin: 0;
+        }
+
+        .menu-card-description {
+            font-size: 0.95rem;
+            color: #718096;
+            line-height: 1.5;
+            margin: 0;
+        }
+    </style>
+  </head>
+  <body>
+<!--   <h1 id="First-heading" class="odd">This is heading 5</h1>
+    <h1>This is heading 5</h1>
+    <h1 class="odd">This is heading 5</h1>
+    <h1>This is heading 5</h1>
+    <h1 class="odd">This is heading 5</h1>
+
+    <section class="container">
+      <div class="box">
+        <h1>This is heading 1</h1>
+      </div>
+
+      <div class="box">
+        <h2>This is heading 2</h2>
+      </div>
+    </section>
+  -->
+
+    <div class="menu-card">
+        <div class="menu-card-header">
+            <h3 class="menu-card-name">Truffle Margherita Pizza</h3>
+            <span class="menu-card-price">$18.50</span>
+        </div>
+        <p class="menu-card-description">Fresh artisanal dough topped with San Marzano tomatoes, creamy fior di latte mozzarella, fresh basil, and a drizzle of black truffle oil.</p>
+    </div>
+   
+  </body>
+</html>
