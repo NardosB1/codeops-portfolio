@@ -1,0 +1,161 @@
+/* Box-sizing reset and base typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #2d3748;
+    background-color: #f7fafc;
+    line-height: 1.5;
+}
+
+/* Page Grid Skeleton Structure */
+.page {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* Sticky Flexbox Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+  color: #9b2c2c; /* Habesha theme red/brown */
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: #9b2c2c;
+}
+
+.order-btn {
+    background-color: #9b2c2c;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.order-btn:hover {
+    background-color: #742a2a;
+}
+
+/* Main Content Area */
+.main-content {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #1a202c;
+}
+
+/* Auto-fit Menu Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+/* Flexbox Cards with pinned prices */
+.card {
+  position: relative; /* Context for absolute badge */
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #edf2f7;
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+  flex-grow: 1; /* Forces content section to fill remaining height */
+    padding: 1.5rem;
+}
+
+.card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #718096;
+  margin-bottom: 1.5rem; /* Space before price */
+}
+
+.price {
+  margin-top: auto; /* Pushes price to the absolute bottom of the card */
+    font-weight: 700;
+    color: #9b2c2c;
+    font-size: 1.1rem;
+}
+
+/* Pinned Popular Badge */
+.badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #dd6b20;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #1a202c;
+    color: #a0aec0;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+}
