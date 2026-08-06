@@ -1,0 +1,120 @@
+/*1.GLOBAL RESET & BASE STYLES */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui,'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  background-color: #f8fafc;
+  color: #1e293b;
+  padding: 24px 16px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.menu-header h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: #0f172a;
+}
+
+.menu-header p {
+  color: #64748b;
+  font-size: 1rem;
+}
+
+/* Golden Image Rule */
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/*2.MOBILE-FIRST BASE LAYOUT (Step2: 1Column)*/
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Default base for mobile (360px+) */
+  gap: 24px;
+}
+
+/* Card Styling */
+.menu-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  /* Prepare GPU acceleration properties for smooth rendering */
+  will-change: transform, box-shadow;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.card-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d97706;
+}
+
+.card-desc {
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+/* 3. RESPONSIVE BREAKPOINTS (Step 3)*/
+
+/* Tablet Breakpoint: 2 Columns */
+@media (min-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop Breakpoint: 3 Columns */
+@media (min-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*4. ANIMATIONS & ACCESSIBILITY GUARDS (Steps 4 & 5)*/
+
+/* Step 5: Only apply hover motion if reduced motion isn't requested */
+@media (prefers-reduced-motion: no-preference) {
+  .menu-card {
+    /* Step 4: Add smooth transition for transform and shadow */
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .menu-card:hover {
+    /* Step 4: Tasteful lift on hover */
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+}
