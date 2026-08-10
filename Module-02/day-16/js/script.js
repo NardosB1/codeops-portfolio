@@ -25,3 +25,5 @@ switch (method) {
                 fee = total * 0.02;
 }
 console.log(`telebirr fee= ${fee}`)
+
+
