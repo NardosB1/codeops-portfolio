@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Form</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; max-width: 400px; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; margin-bottom: 0.3rem; font-weight: bold; }
+    input { width: 100%; padding: 0.5rem; box-sizing: border-box; }
+    button { padding: 0.6rem 1.2rem; cursor: pointer; }
+    .error { color: #d9534f; margin-top: 1rem; font-weight: bold; }
+    .counter { margin-top: 1.5rem; font-style: italic; color: #555; }
+  </style>
+</head>
+<body>
+
+  <h2>Sign Up</h2>
+
+  <form id="signup-form" novalidate>
+    <div class="form-group">
+      <label for="full-name">Full Name</label>
+      <input type="text" id="full-name" name="fullName" placeholder="e.g. Abebe Bikila">
+    </div>
+
+    <div class="form-group">
+      <label for="phone-number">Ethiopian Phone Number</label>
+      <input type="tel" id="phone-number" name="phoneNumber" placeholder="e.g. +251912345678 or 0912345678">
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="error-message" class="error" aria-live="polite"></div>
+  <div id="signup-counter" class="counter"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

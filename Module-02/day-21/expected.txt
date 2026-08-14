@@ -1,0 +1,35 @@
+1. INITIAL LOAD BEHAVIOR
+- Reads 'ethiopia_signups' from localStorage on page load.
+- Displays "0 people have signed up." when storage is empty or key does not exist.
+- Parses existing JSON array from localStorage and displays "N people have signed up."
+- Handles singular/plural grammar correctly ("1 person has signed up." vs "N people have signed up.").
+
+2. FORM SUBMISSION & DEFAULT PREVENTION
+- Submitting the form prevents the browser default page refresh behavior via event.preventDefault().
+- Trims leading and trailing whitespace from Name and Phone inputs prior to validation.
+
+3. VALIDATION RULES & ERROR MESSAGES
+- Validates Name length: must be at least 2 non-whitespace characters long.
+- Validates Phone against Ethiopian phone number pattern /^(?:\+251|251|0)?[79]\d{8}$/.
+- First-error priority rule: If both Name and Phone are invalid upon submission, only the primary error for Name is displayed.
+- Accepts valid Ethiopian Phone formats:
+  * Local prefix: 0912345678, 0712345678
+  * Country prefix: 251912345678, 251712345678
+  * International prefix: +251912345678, +251712345678
+- Rejects invalid Ethiopian Phone formats:
+  * Invalid operator codes (e.g., 0812345678)
+  * Short digit counts (e.g., 091234567)
+  * Extra digit counts (e.g., 09123456789)
+  * Alpha/special character inclusions (e.g., 091234567a)
+
+4. REAL-TIME INLINE VALIDATION
+- Evaluates Name input validity dynamically on 'input' and 'blur' events once interaction begins.
+- Evaluates Phone input validity dynamically on 'input' and 'blur' events once interaction begins.
+- Dynamically clears individual field error messages once the user inputs a valid value.
+
+5. PERSISTENCE & STATE RESET
+- On successful validation, appends entry object { name, phone, timestamp } into JSON array stored in localStorage under 'ethiopia_signups'.
+- Resets form input values upon successful submission.
+- Clears all visible active error messages upon successful submission.
+- Updates the DOM counter text immediately upon successful submission.
+- Retains saved entries across browser page reloads.
