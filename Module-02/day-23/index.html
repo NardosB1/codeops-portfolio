@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addis Eats</title>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+    <header>
+        <h1> Addis Eats</h1>
+        <input type="search" id="search" placeholder="Search dishes" arial-label="Search menu"/>
+    </header>
+
+    <main>
+        <section id="menu" aria-label="Menu"></section>
+
+        <aside id="cart" aria-label="Your order">
+            <h2> Your Cart </h2>
+            <div id="cart-items"></div>
+            <p id="cart-total">0 ETB</p>
+
+            <form id="checkout" novalidate>
+                <label for="name"> Name</label>
+                <input type="text" id="name" required/>
+                <label for="phone"> Phone (Telebirr) </label>
+                <input type="tel" id="phone" placehokder="0912345678"/>
+                <label for="area"> Delivery area</label>
+                <select id="area">
+                    <option>Bole</option>
+                    <option>Kazanchis</option>
+                    <option>Megenagna</option>
+                </select>
+                <p id="form-error" class="error" aria-live="polite"></p>
+                <button type="submit">Place order</button>
+            </form>
+
+        </aside>
+    </main>
+
+
+    <footer>
+        <p> Bole, Addis Ababa * TeleBirr</p>
+    </footer>
+
+    <div id="confirmation" class="hidden" role="dialog" aria-live="polite">
+        <p id="comfirm-msg"> </p>
+        <button id="close-confirm"> Close</button>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
