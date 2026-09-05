@@ -71,7 +71,7 @@ main {
 
 .dish img {
     width: 100%;
-    height: 120px;
+    height: 220px;
     object-fit: cover;
     border-radius: calc(var(--radius) - 4px);
 }

@@ -1,6 +1,6 @@
 const STORAGE_KEY = "addiseats-cart";
 const FREE_DELIVERY_OVER = 500; // ETB – example magic value lifted
-const PHONE_REGEX = /(?:\+251|0)9\d{8}/; // Ethiopian mobile number pattern
+const PHONE_REGEX = /(?:\+251|0)9\d{8}/; 
 
 const state = {
     dishes: [],

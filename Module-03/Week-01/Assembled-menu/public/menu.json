@@ -1,0 +1,12 @@
+[
+  { "id": "doro-wot", "name": "Doro Wot", "category": "Veg", "price": 250 },
+  { "id": "sega-wot", "name": "Sega Wot", "category": "Veg", "price": 240 },
+  { "id": "misir-wot", "name": "Misir Wot", "category": "Veg", "price": 150 },
+  { "id": "shiro", "name": "Shiro", "category": "Wot", "price": 140 },
+  { "id": "injera-plain", "name": "Injera (basket)", "category": "Injera", "price": 60 },
+  { "id": "firfir", "name": "Firfir", "category": "Veg", "price": 130 },
+  { "id": "tej", "name": "Tej (honey wine)", "category": "Drinks", "price": 90 },
+  { "id": "buna", "name": "Buna (coffee ceremony)", "category": "Drinks", "price": 70 },
+  { "id": "ambasha", "name": "Ambasha", "category": "Dessert", "price": 80 },
+  { "id": "dabo-kolo", "name": "Dabo Kolo", "category": "Dessert", "price": 60 }
+]
