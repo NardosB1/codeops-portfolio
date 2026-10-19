@@ -1,0 +1,5 @@
+"use client";
+import { useActionState } from "react";
+import { signIn, type AuthState } from "@/actions/auth";
+const initial: AuthState = {};
+export function SignInForm({ next }: { next?: string }) { const [state, action, pending] = useActionState(signIn, initial); return <form action={action} className="mt-6 space-y-4"><input type="hidden" name="next" value={next ?? "/account"}/><label className="block text-sm font-medium">Email<input name="email" type="email" autoComplete="email" required className="mt-1 w-full rounded-lg border px-3 py-2"/></label><label className="block text-sm font-medium">Password<input name="password" type="password" autoComplete="current-password" required className="mt-1 w-full rounded-lg border px-3 py-2"/></label>{state.error && <p role="alert" className="text-sm text-red-700">{state.error}</p>}<button disabled={pending} className="w-full rounded-lg bg-slate-900 px-4 py-3 font-semibold text-white disabled:opacity-60">{pending ? "Signing in…" : "Sign in"}</button></form>; }

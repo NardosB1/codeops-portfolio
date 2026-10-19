@@ -1,0 +1,4 @@
+import { NextResponse } from "next/server";
+import { getSession } from "@/lib/session";
+export const dynamic = "force-dynamic";
+export async function GET() { const session = await getSession(); return NextResponse.json({ user: session?.user ?? null }, { headers: { "Cache-Control": "private, no-store, max-age=0" } }); }

@@ -1,0 +1,17 @@
+import assert from "node:assert/strict";
+import { safeNext, normalizePhone } from "../src/lib/validation";
+import { createSessionToken, verifySessionToken, hashToken } from "../src/lib/session-token-testable";
+process.env.SESSION_SECRET = "test-only-secret-that-is-at-least-32-bytes-long";
+assert.equal(safeNext("/orders?tab=active"), "/orders?tab=active");
+assert.equal(safeNext("https://example.com"), "/");
+assert.equal(safeNext("//example.com"), "/");
+assert.equal(safeNext("/\\example.com"), "/");
+assert.equal(normalizePhone("0912 345 678"), "+251912345678");
+assert.equal(normalizePhone("+251912345678"), "+251912345678");
+assert.equal(hashToken("secret-token"), hashToken("secret-token"));
+assert.notEqual(hashToken("secret-token"), hashToken("different-token"));
+const token = createSessionToken("123e4567-e89b-12d3-a456-426614174000", 1_800_000_000_000);
+assert.ok(verifySessionToken(token, 1_800_000_001_000));
+assert.equal(verifySessionToken(token + "x", 1_800_000_001_000), false);
+assert.equal(verifySessionToken(token, 1_800_700_000_000), false);
+console.log("Security smoke tests passed: safeNext, normalizePhone, session signature and expiry.");

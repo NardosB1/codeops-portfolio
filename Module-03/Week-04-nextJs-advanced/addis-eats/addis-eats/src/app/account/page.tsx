@@ -1,0 +1,3 @@
+import { requireUser } from "@/lib/auth";
+export const dynamic = "force-dynamic";
+export default async function AccountPage() { const { user } = await requireUser(); return <section className="max-w-2xl rounded-2xl border bg-white p-7"><h1 className="text-3xl font-bold">Your account</h1><dl className="mt-6 grid gap-4"><div><dt className="text-sm text-slate-500">Name</dt><dd className="font-semibold">{user.name}</dd></div><div><dt className="text-sm text-slate-500">Email</dt><dd>{user.email}</dd></div><div><dt className="text-sm text-slate-500">Phone</dt><dd>{user.phone}</dd></div><div><dt className="text-sm text-slate-500">Role</dt><dd>{user.role}</dd></div></dl><a className="mt-6 inline-block underline" href="/orders">View your orders</a></section>; }
