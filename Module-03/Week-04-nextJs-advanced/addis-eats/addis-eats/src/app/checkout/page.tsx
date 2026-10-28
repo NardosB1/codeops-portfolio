@@ -1,3 +1,14 @@
-import { requireUser } from "@/lib/auth";
-export const dynamic = "force-dynamic";
-export default async function CheckoutPage() { await requireUser(); return <section className="rounded-2xl border bg-white p-7"><h1 className="text-3xl font-bold">Checkout</h1><p className="mt-3 text-slate-600">The server-side <code>placeOrder</code> action is implemented and recomputes prices from Neon. Connect your cart UI to it before enabling checkout in production.</p></section>; }
+import { requireUser } from "@/lib/dal";
+import CheckoutForm from "./CheckoutForm";
+
+export const metadata = { title: "Checkout" };
+
+export default async function CheckoutPage() {
+  const user = await requireUser("/checkout"); // Layer 2 (proxy.ts was Layer 1)
+  return (
+    <main className="mx-auto w-full max-w-xl px-4 py-8">
+      <h1 className="mb-4 text-2xl font-semibold">Checkout</h1>
+      <CheckoutForm defaultName={user.name} />
+    </main>
+  );
+}
