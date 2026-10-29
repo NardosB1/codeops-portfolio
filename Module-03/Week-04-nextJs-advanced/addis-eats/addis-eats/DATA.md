@@ -1,32 +1,38 @@
 # DATA.md — Addis Eats
 
+> Rule of thumb: **server unless the person triggers it.** Where a client query is unavoidable, the server renders the first result and passes it in as `fallbackData`, so nobody watches a spinner for data we already had.
+
 ## 1. Decision two — where data is fetched
 
 | Data | Where | Why |
 |---|---|---|
 | Menu and dishes | Server | Public, indexable, cacheable |
-| Order history | Server | Private, scoped to session |
-| Order status | Server endpoint; SWR-ready client contract | Refreshes without user action; endpoint checks session and ownership |
-| Menu search | Planned client/SWR enhancement | Typing-triggered, debounce before request |
-| Cart | Client store (not included yet) | Only sent to server when placing order |
+| Order history | Server | Private, scoped to the session |
+| Order status | Server first, then polled on the client | Must keep refreshing on its own |
+| Menu search | Client | Triggered by typing, debounced |
+| Cart | Client store | It never leaves the browser until `placeOrder` |
 
 ## 2. Every query
 
-| Query | Server / Client | Key | Refresh rule | Seeded by | Reasoning |
+| Query | Server / Client | Key | Refresh rule | Seeded by | One line of reasoning |
 |---|---|---|---|---|---|
-| `getMenu()` | Server | n/a | `revalidate = 300` on menu route | SQL seed in README | Shared public data, rendered for crawlers |
-| `getDish(slug)` | Server | n/a | Same route revalidation policy | SQL seed | Public detail page; metadata and sitemap |
-| `getOrdersFor(session.userId)` | Server | n/a | Dynamic, never shared across users | User-created orders | WHERE uses session ID, not browser input |
-| `getOrderFor(session.userId, orderId)` | Server | n/a | Dynamic | User-created orders | Same scoping; missing row becomes 404 |
-| `/api/orders/[id]/status` | Client polling contract | URL | Suggested ~5 seconds; stop for terminal status in client | Server detail page can seed | Status updates; endpoint rechecks session + ownership |
-| Menu search | Not implemented yet | Proposed `/api/menu/search?q=` | Proposed 300ms debounce | Full server-rendered menu | Triggered by typing, not render |
-| Cart | Not implemented yet | local state/store | n/a | Browser interaction | Client state only until `placeOrder` |
+| `getDishes()` (menu) | Server | n/a (ISR, 1 hour) | `revalidate = 3600` on `/menu` | n/a | Same for everyone, so it can be rendered to HTML once for crawlers |
+| `getDish(id)` | Server | n/a (static via `generateStaticParams`, 1 hour) | `revalidate = 3600` | n/a | Public detail page; also feeds `generateMetadata` and the sitemap |
+| `getOrdersFor(session.id)` | Server | n/a | Dynamic, never shared across users | n/a | Private; the filter uses the session id, never an id sent by the browser (`lib/orders.ts`) |
+| `getOrderFor(session.id, orderId)` | Server | n/a | Dynamic | n/a | Same scoping; no row means `notFound()` |
+| Order status poll | Client (SWR) | `/api/orders/[id]/status` | `refreshInterval` 5000 ms; returns 0 (stops) once the status is `delivered` or `cancelled` | `fallbackData` from `getOrderFor` on the server (`app/orders/[id]/page.tsx`) | Status changes without the person doing anything; the endpoint re-checks session + ownership |
+| Menu search | Client (SWR) | `/api/dishes?q=<term>` | Debounce 300 ms; key is `null` (no request) for fewer than 2 characters | `fallbackData` = the full menu ids, rendered by the server (`app/menu/layout.tsx`) | Triggered by typing, so it cannot run at render time |
+| Cart | Client store | n/a (localStorage via `useSyncExternalStore`) | n/a | n/a | Not data the server needs until `placeOrder` |
+| Session (header) | Client (SWR) | `/api/session` | Re-checked on every navigation | none (shows a placeholder, no layout shift) | The header must not read cookies on the server, or every route would become dynamic |
 
-## 3. Verification
+## 3. Verification (fill in on the deployed URL)
 
 | Check | How | Expected | Observed |
 |---|---|---|---|
-| Menu rendering | Load `/menu` with seeded data | HTML contains dish names | TODO: verify deployed URL |
-| Seeding | Hard reload private order page | Initial data rendered server-side | TODO: verify with real order |
-| Poll endpoint scope | Request another user's order status | 404/refused | Query is scoped; TODO: run two-account test |
-| Menu search debounce | Not implemented | N/A | Deferred |
+| Debounce | Network tab, type "lentil" quickly | One request per pause, not per keystroke; none for 1 character | **YOU** |
+| Seeding | Hard-reload `/orders/ord_813` as Almaz | Status on arrival, no spinner | **YOU** |
+| Poll stops | Cancel the order, watch Network | Requests stop once status is `cancelled` | **YOU** |
+| Poll is scoped | Request `/api/orders/ord_812/status` as Almaz | 404 | **YOU** |
+| Category filter | Click "Drinks" | No network request; non-drinks hidden | **YOU** |
+
+The data layer (`lib/dishes.ts`, `lib/orders.ts`) is async and is the only code that touches the data, so a real database replaces those two files and nothing else.

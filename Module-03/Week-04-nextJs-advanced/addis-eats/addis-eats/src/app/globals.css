@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Honey: warm surfaces and highlights */
+  --color-honey-50: #fff8e7;
+  --color-honey-100: #fcefc7;
+  --color-honey-200: #f9de94;
+  --color-honey-300: #f6cb62;
+  --color-honey-400: #f4b942;
+  --color-honey-700: #7a4f00;
+  --color-honey-900: #4a2f00;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Lake: the blue for actions, links and focus */
+  --color-lake-50: #eef4fc;
+  --color-lake-100: #dce8f8;
+  --color-lake-200: #b9d1f0;
+  --color-lake-600: #2b5fa3;
+  --color-lake-700: #1d4e89;
+  --color-lake-800: #163a68;
+
+  /* Neutrals */
+  --color-ink: #1e2a44;
+  --color-paper: #fffdf7;
+  --color-edge: #6b7a99;
+
+  /* Re-tint Tailwind's grays so existing gray-* classes become navy-warm */
+  --color-gray-100: #f3eddc;
+  --color-gray-200: #e9e2d0;
+  --color-gray-400: #6b7a99;
+  --color-gray-600: #55607a;
+  --color-gray-700: #3f4a63;
+  --color-gray-900: #1e2a44;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  /* Tailwind v4 draws plain `border` in the text colour. Make every hairline honey instead. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-honey-200);
+  }
+
+  html,
+  body {
+    background: var(--color-honey-50);
+  }
+
+  body {
+    color: var(--color-ink);
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+  }
+
+  a {
+    color: var(--color-lake-700);
+  }
+  a:hover {
+    color: var(--color-lake-800);
+  }
+
+  input:not([type="hidden"]),
+  textarea {
+    background-color: var(--color-paper);
+  }
+
+  ::selection {
+    background: var(--color-honey-300);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-lake-600);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
