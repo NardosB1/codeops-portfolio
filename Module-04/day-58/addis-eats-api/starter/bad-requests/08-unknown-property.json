@@ -1,0 +1,12 @@
+{
+  "restaurantId": "rest-1",
+  "customerPhone": "0911234567",
+  "deliveryType": "PICKUP",
+  "totalSantim": 1,
+  "lines": [
+    {
+      "dishId": "dish-1",
+      "quantity": 1
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "restaurantId": "rest-1",
+  "customerPhone": "12345",
+  "deliveryType": "PICKUP",
+  "lines": [
+    {
+      "dishId": "dish-1",
+      "quantity": 1
+    }
+  ]
+}

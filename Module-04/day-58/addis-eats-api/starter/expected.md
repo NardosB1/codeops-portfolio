@@ -1,0 +1,12 @@
+01-invalid-telebirr.json -> 400
+02-negative-santim.json -> 400
+03-decimal-santim.json -> 400
+04-empty-lines.json -> 400
+05-nested-missing-dishid.json -> 400
+06-nested-zero-quantity.json -> 400
+07-missing-delivery-address.json -> 400
+08-unknown-property.json -> 400
+09-nonexistent-restaurant.json -> 404
+10-nonexistent-dish.json -> 404
+11-closed-restaurant.json -> 409
+12-dish-wrong-restaurant.json -> 400
